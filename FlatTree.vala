@@ -46,6 +46,26 @@ namespace FlatTree {
         return (((index + 1) / pow2 (depth)) - 1) / 2;
     }
 
+    /**
+     * Returns the index of the sibling for a node at the given index
+     * 
+     * @param index the index of the node
+     *
+     * @return the index of the sibling node
+     */
+    public static int sibling (int index) {
+        int depth = depth (index);
+        int offset = offset (index);
+
+        if ((offset & 1) == 0) {
+            offset += 1;
+        } else {
+            offset -= 1;
+        }
+
+        return FlatTree.index (depth, offset);
+    }
+
     private int pow2 (int n) {
         int x = 1;
 
