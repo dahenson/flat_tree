@@ -7,8 +7,8 @@ namespace FlatTree {
      *
      * @return the depth of the node
      */
-    public static int depth (int index) {
-        int depth = 0;
+    public static uint depth (uint index) {
+        uint depth = 0;
 
         while ((index & 1) != 0) {
             index >>= 1;
@@ -26,7 +26,7 @@ namespace FlatTree {
      *
      * @return the calculated index of the node at depth and offset
      */
-    public static int index (int depth, int offset) {
+    public static uint index (uint depth, uint offset) {
         return (1 + 2 * offset) * pow2 (depth) - 1;
     }
 
@@ -37,11 +37,11 @@ namespace FlatTree {
      *
      * @return the calculated offset of the node
      */
-    public static int offset (int index) {
+    public static uint offset (uint index) {
         if ((index & 1) == 0)
             return index / 2;
 
-        int depth = depth (index);
+        uint depth = depth (index);
 
         return (((index + 1) / pow2 (depth)) - 1) / 2;
     }
@@ -53,9 +53,9 @@ namespace FlatTree {
      *
      * @return the index of the sibling node
      */
-    public static int sibling (int index) {
-        int depth = depth (index);
-        int offset = offset (index);
+    public static uint sibling (uint index) {
+        uint depth = depth (index);
+        uint offset = offset (index);
 
         if ((offset & 1) == 0) {
             offset += 1;
@@ -66,8 +66,8 @@ namespace FlatTree {
         return FlatTree.index (depth, offset);
     }
 
-    private int pow2 (int n) {
-        int x = 1;
+    private uint pow2 (uint n) {
+        uint x = 1;
 
         x <<= n;
 
