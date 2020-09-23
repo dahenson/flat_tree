@@ -30,6 +30,13 @@ public void test_offset () {
     assert (FlatTree.offset (21) == 5);
 }
 
+public void test_parent () {
+    assert (FlatTree.parent (0) == 1);
+    assert (FlatTree.parent (13) == 11);
+    assert (FlatTree.parent (8) == 9);
+    assert (FlatTree.parent (25) == 27);
+}
+
 public void test_sibling () {
     assert (FlatTree.sibling (0) == 2);
     assert (FlatTree.sibling (2) == 0);
@@ -41,6 +48,7 @@ int main () {
     test_depth ();
     test_index ();
     test_offset ();
+    test_parent ();
     test_sibling ();
 
     return 0;

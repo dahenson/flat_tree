@@ -47,6 +47,23 @@ namespace FlatTree {
     }
 
     /**
+     * Returns the index of the parent for a node at the given index
+     * 
+     * @param index the index of the node
+     *
+     * @return the index of the parent node
+     */
+    public static uint parent (uint index) {
+        uint depth = depth (index);
+        uint offset = offset (index);
+
+        if ((offset & 1) == 1)
+            offset -= 1;
+
+        return FlatTree.index (depth + 1, offset / 2);
+    }
+
+    /**
      * Returns the index of the sibling for a node at the given index
      * 
      * @param index the index of the node
