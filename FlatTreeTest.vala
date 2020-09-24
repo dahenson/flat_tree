@@ -1,4 +1,23 @@
 
+public void test_children () {
+    uint[2] children = {};
+
+    children = FlatTree.children (1);
+    assert (children[0] == 0);
+    assert (children[1] == 2);
+
+    children = FlatTree.children (15);
+    assert (children[0] == 7);
+    assert (children[1] == 23);
+
+    children = FlatTree.children (23);
+    assert (children[0] == 19);
+    assert (children[1] == 27);
+
+    children = FlatTree.children (16);
+    assert (children == null);
+}
+
 public void test_depth () {
     assert (FlatTree.depth (0) == 0);
     assert (FlatTree.depth (6) == 0);
@@ -23,6 +42,13 @@ public void test_index () {
     assert (FlatTree.index (3, 1) == 23);
 }
 
+public void test_left_child () {
+    assert (FlatTree.left_child (0) == null);
+    assert (FlatTree.left_child (1) == 0);
+    assert (FlatTree.left_child (3) == 1);
+    assert (FlatTree.left_child (15) == 7);
+}
+
 public void test_offset () {
     assert (FlatTree.offset (0) == 0);
     assert (FlatTree.offset (10) == 5);
@@ -37,6 +63,13 @@ public void test_parent () {
     assert (FlatTree.parent (25) == 27);
 }
 
+public void test_right_child () {
+    assert (FlatTree.right_child (4) == null);
+    assert (FlatTree.right_child (1) == 2);
+    assert (FlatTree.right_child (3) == 5);
+    assert (FlatTree.right_child (15) == 23);
+}
+
 public void test_sibling () {
     assert (FlatTree.sibling (0) == 2);
     assert (FlatTree.sibling (2) == 0);
@@ -45,10 +78,13 @@ public void test_sibling () {
 }
 
 int main () {
+    test_children ();
     test_depth ();
     test_index ();
+    test_left_child ();
     test_offset ();
     test_parent ();
+    test_right_child ();
     test_sibling ();
 
     return 0;
