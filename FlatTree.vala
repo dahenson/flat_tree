@@ -20,9 +20,23 @@ namespace FlatTree {
         uint left_child = FlatTree.index (depth, child_offset);
         uint right_child = FlatTree.index (depth, child_offset + 1);
 
-        uint[2] children = { left_child, right_child };
+        return { left_child, right_child };
+    }
 
-        return children;
+    /**
+     * Returns the count of the tree for the given index
+     *
+     * @param index the index of the parent node
+     *
+     * @return the count of the tree at the given node
+     */
+    public static uint count (uint index) {
+        if ((index & 1) == 0)
+            return 1;
+
+        uint depth = depth (index);
+
+        return pow2 (depth + 1) - 1;
     }
 
     /**
@@ -71,6 +85,22 @@ namespace FlatTree {
         uint offset = offset_given_depth (index, depth);
 
         return FlatTree.index (depth - 1, offset * 2);
+    }
+
+    /**
+     * Returns the left-most node of the tree at the given index
+     * 
+     * @param index the index of the node
+     *
+     * @return the index of the left span
+     */
+    public static uint? left_span (uint index) {
+        if ((index & 1) == 0)
+            return index;
+
+        uint depth = depth (index);
+
+        return (index + 1) - pow2 (depth);
     }
 
     /**
@@ -125,6 +155,22 @@ namespace FlatTree {
     }
 
     /**
+     * Returns the right-most node of the tree at the given index
+     * 
+     * @param index the index of the parent node
+     *
+     * @return the index of the right span
+     */
+    public static uint right_span (uint index) {
+        if ((index & 1) == 0)
+            return index;
+
+        uint depth = depth (index);
+
+        return (index - 1) + pow2 (depth);
+    }
+
+    /**
      * Returns the index of the sibling for a node at the given index
      * 
      * @param index the index of the node
@@ -142,6 +188,25 @@ namespace FlatTree {
         }
 
         return FlatTree.index (depth, offset);
+    }
+
+    /**
+     * Returns the indeces of the left and right spans for a node at the given
+     * index
+     * 
+     * @param index the index of the node
+     *
+     * @return the indeces of the left and right spanning nodes
+     */
+    public static uint[] spans (uint index) {
+        if ((index & 1) == 0)
+            return {index, index};
+
+        uint depth = depth (index);
+        uint left_span = (index + 1) - pow2 (depth);
+        uint right_span = (index - 1) + pow2 (depth);
+
+        return {left_span, right_span};
     }
 
     private uint pow2 (uint n) {

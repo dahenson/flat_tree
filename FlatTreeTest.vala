@@ -18,6 +18,16 @@ public void test_children () {
     assert (children == null);
 }
 
+public void test_count () {
+    assert (FlatTree.count (0) == 1);
+    assert (FlatTree.count (16) == 1);
+    assert (FlatTree.count (1) == 3);
+    assert (FlatTree.count (3) == 7);
+    assert (FlatTree.count (5) == 3);
+    assert (FlatTree.count (23) == 15);
+    assert (FlatTree.count (27) == 7);
+}
+
 public void test_depth () {
     assert (FlatTree.depth (0) == 0);
     assert (FlatTree.depth (6) == 0);
@@ -49,6 +59,14 @@ public void test_left_child () {
     assert (FlatTree.left_child (15) == 7);
 }
 
+public void test_left_span () {
+    assert (FlatTree.left_span (2) == 2);
+    assert (FlatTree.left_span (1) == 0);
+    assert (FlatTree.left_span (3) == 0);
+    assert (FlatTree.left_span (11) == 8);
+    assert (FlatTree.left_span (19) == 16);
+}
+
 public void test_offset () {
     assert (FlatTree.offset (0) == 0);
     assert (FlatTree.offset (10) == 5);
@@ -70,6 +88,14 @@ public void test_right_child () {
     assert (FlatTree.right_child (15) == 23);
 }
 
+public void test_right_span () {
+    assert (FlatTree.right_span (4) == 4);
+    assert (FlatTree.right_span (1) == 2);
+    assert (FlatTree.right_span (3) == 6);
+    assert (FlatTree.right_span (15) == 30);
+    assert (FlatTree.right_span (23) == 30);
+}
+
 public void test_sibling () {
     assert (FlatTree.sibling (0) == 2);
     assert (FlatTree.sibling (2) == 0);
@@ -77,15 +103,39 @@ public void test_sibling () {
     assert (FlatTree.sibling (19) == 27);
 }
 
+public void test_spans () {
+    uint[2] spans = {};
+
+    spans = FlatTree.spans (0);
+    assert (spans[0] == 0);
+    assert (spans[1] == 0);
+
+    spans = FlatTree.spans (16);
+    assert (spans[0] == 16);
+    assert (spans[1] == 16);
+
+    spans = FlatTree.spans (3);
+    assert (spans[0] == 0);
+    assert (spans[1] == 6);
+
+    spans = FlatTree.spans (19);
+    assert (spans[0] == 16);
+    assert (spans[1] == 22);
+}
+
 int main () {
     test_children ();
+    test_count ();
     test_depth ();
     test_index ();
     test_left_child ();
+    test_left_span ();
     test_offset ();
     test_parent ();
     test_right_child ();
+    test_right_span ();
     test_sibling ();
+    test_spans ();
 
     return 0;
 }
