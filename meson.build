@@ -9,7 +9,10 @@ dependencies = [
   dependency('gobject-2.0')
 ]
 
-source = files('FlatTree.vala')
+source = files(
+    'FlatTree.vala',
+    'FlatTreeIterator.vala'
+)
 
 flat_tree_lib = library('flat_tree_lib', source, dependencies: dependencies)
 
@@ -17,6 +20,10 @@ flat_tree_lib = library('flat_tree_lib', source, dependencies: dependencies)
 test_sources = files('FlatTreeTest.vala')
 test_exe = executable('test_flat_tree_lib', test_sources, dependencies: dependencies, link_with: flat_tree_lib)
 test('test_flat_tree_lib', test_exe)
+
+test_sources = files('FlatTreeIteratorTest.vala')
+test_iterator_exe = executable('test_flat_tree_iterator_lib', test_sources, dependencies: dependencies, link_with: flat_tree_lib)
+test('test_flat_tree_iterator_lib', test_iterator_exe)
 
 # Build The Docs
 valadoc_outdir = meson.current_build_dir() + '/valadoc'
