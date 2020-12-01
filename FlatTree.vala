@@ -58,6 +58,18 @@ namespace FlatTree {
     }
 
     /**
+     * Returns a list of all of the full roots (subtrees where the nodes have
+     * either 2 or 0 children) < index
+     *
+     * @param index the index of the node
+     *
+     * @return an array or the full roots of the tree
+     */
+    public static uint[] full_roots (uint index) {
+        return new uint[0];
+    }
+
+    /**
      * Returns an array index for the tree element at the given depth and offset
      * 
      * @param depth the depth of the desired index

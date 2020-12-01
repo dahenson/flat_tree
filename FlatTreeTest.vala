@@ -1,6 +1,6 @@
 
 public void test_children () {
-    uint[2] children = {};
+    uint[] children = {};
 
     children = FlatTree.children (1);
     assert (children[0] == 0);
@@ -35,6 +35,17 @@ public void test_depth () {
     assert (FlatTree.depth (5) == 1);
     assert (FlatTree.depth (15) == 4);
     assert (FlatTree.depth (23) == 3);
+}
+
+public void test_full_roots () {
+    /* uint[] roots; */
+    /*  */
+    /* roots = FlatTree.full_roots (0); */
+    /* assert (roots.length == 0); */
+    /*  */
+    /* roots = FlatTree.full_roots (2); */
+    /* assert (roots.length == 1); */
+    /* assert (roots[0] == 2); */
 }
 
 public void test_index () {
@@ -104,7 +115,7 @@ public void test_sibling () {
 }
 
 public void test_spans () {
-    uint[2] spans = {};
+    uint[] spans = {};
 
     spans = FlatTree.spans (0);
     assert (spans[0] == 0);
@@ -127,6 +138,7 @@ int main () {
     test_children ();
     test_count ();
     test_depth ();
+    test_full_roots ();
     test_index ();
     test_left_child ();
     test_left_span ();
