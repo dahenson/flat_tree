@@ -9,11 +9,8 @@ namespace FlatTree {
          *
          * @param index the index of the node
          */
-        public Iterator.with_index (uint index) {
-            this.index = index;
-            this.offset = FlatTree.offset (index);
-            var depth = FlatTree.depth (index);
-            this.factor = FlatTree.pow2 (depth + 1);
+        public Iterator.at_index (uint index) {
+            seek (index);
         }
 
         /**
@@ -121,6 +118,18 @@ namespace FlatTree {
             offset = index / 2;
             factor = 2;
             return index;
+        }
+
+        /**
+         * Moves the iterator to the specified tree index
+         *
+         * @param index the target index for the iterator
+         */
+        public void seek (uint index) {
+            this.index = index;
+            this.offset = FlatTree.offset (index);
+            var depth = FlatTree.depth (index);
+            this.factor = FlatTree.pow2 (depth + 1);
         }
     }
 }
