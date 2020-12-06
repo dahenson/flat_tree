@@ -14,6 +14,26 @@ namespace FlatTree {
         }
 
         /**
+         * Is the iterator at the index of a left child
+         */
+        public bool is_left () {
+            if ((offset & 1) == 1)
+                return false;
+
+            return true;
+        }
+
+        /**
+         * Is the iterator at the index of a right child
+         */
+        public bool is_right () {
+            if ((offset & 1) == 0)
+                return false;
+
+            return true;
+        }
+
+        /**
          * Moves the iterator to the index of the left child at the current
          * index
          *
