@@ -17,3 +17,6 @@ jobs:
 
       - name: Build
         run: meson build && ninja -C build
+
+      - name: Run tests
+        run: ninja -C build test
