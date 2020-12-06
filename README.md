@@ -1,4 +1,5 @@
 # FlatTree for Vala
+![build](https://github.com/dahenson/flat_tree/workflows/CI/badge.svg?branch=master)
 
 A collection of functions to map a binary tree to an array.
 
