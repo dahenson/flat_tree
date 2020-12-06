@@ -58,12 +58,21 @@ public void test_iterator_is_left () {
     assert (iter.is_left () == true);
 }
 
+public void test_iterator_sibling () {
+    FlatTree.Iterator iter = new FlatTree.Iterator ();
+    assert (iter.sibling () == 2);
+
+    iter.seek (5);
+    assert (iter.sibling () == 1);
+}
+
 int main () {
     test_iterator ();
     test_iterator_non_leaf_start ();
     test_iterator_seek ();
     test_iterator_is_right ();
     test_iterator_is_left ();
+    test_iterator_sibling ();
 
     return 0;
 }

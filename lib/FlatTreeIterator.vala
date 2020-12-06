@@ -1,8 +1,25 @@
 namespace FlatTree {
     public class Iterator {
-        public uint index { private set; public get; default = 0; }
-        public uint offset { private set; public get; default = 0; }
+
+        /**
+         * The distance between each offset at the current depth
+         */
         public uint factor { private set; public get; default = 2; }
+
+        /**
+         * The current index of the iterator
+         */
+        public uint index { private set; public get; default = 0; }
+
+        /**
+         * The current offset of the iterator
+         */
+        public uint offset { private set; public get; default = 0; }
+
+        /**
+         * Constructs a new flat tree iterator index 0
+         */
+        public Iterator () {}
 
         /**
          * Constructs a new flat tree iterator at the given index
@@ -150,6 +167,21 @@ namespace FlatTree {
             this.offset = FlatTree.offset (index);
             var depth = FlatTree.depth (index);
             this.factor = FlatTree.pow2 (depth + 1);
+        }
+
+        /**
+         * Moves the iterator to the sibling of the current node
+         *
+         * @return the index of the sibling node
+         */
+        public uint sibling () {
+            if ((offset & 1) == 0) {
+                index += factor;
+            } else {
+                index -= factor;
+            }
+
+            return index;
         }
     }
 }
