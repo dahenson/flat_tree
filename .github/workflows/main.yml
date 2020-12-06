@@ -13,7 +13,7 @@ jobs:
       - name: Set up build environment
         run: >
             sudo apt update &&
-            sudo apt install meson
+            sudo apt install meson valac valadoc
 
       - name: Build
         run: meson build && ninja -C build
