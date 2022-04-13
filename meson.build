@@ -1,31 +1,49 @@
 project(
     'flat_tree',
     'vala', 'c',
-    version: '0.1'
+    version: '0.1.0'
 )
 
-dependencies = [
-  dependency('glib-2.0'),
-  dependency('gobject-2.0')
-]
+glib    = dependency('glib-2.0')
+gobject = dependency('gobject-2.0')
 
-source = files([
+lib_source = files([
     'lib/FlatTree.vala',
     'lib/FlatTreeIterator.vala'
 ])
 
-flat_tree_lib = library('flat_tree_lib', source, dependencies: dependencies)
+flat_tree_lib = library(
+    'flat_tree_lib',
+    lib_source,
+    dependencies: [glib, gobject]
+)
 
-# Build Tests
-test_sources = files('test/FlatTreeTest.vala')
-test_exe = executable('test_flat_tree_lib', test_sources, dependencies: dependencies, link_with: flat_tree_lib)
-test('test_flat_tree_lib', test_exe)
+#########
+# TESTS #
+#########
 
-test_sources = files('test/FlatTreeIteratorTest.vala')
-test_iterator_exe = executable('test_flat_tree_iterator_lib', test_sources, dependencies: dependencies, link_with: flat_tree_lib)
-test('test_flat_tree_iterator_lib', test_iterator_exe)
+test_flat_tree_exe = executable(
+    'test_flat_tree_lib',
+    files('test/FlatTreeTest.vala'),
+    dependencies: [glib, gobject],
+    link_with: flat_tree_lib
+)
 
-# Build The Docs
+
+test_flat_tree_iterator_exe = executable(
+    'test_flat_tree_iterator_lib',
+    files('test/FlatTreeIteratorTest.vala'),
+    dependencies: [glib, gobject],
+    link_with: flat_tree_lib
+)
+
+test('test_flat_tree_lib', test_flat_tree_exe)
+test('test_flat_tree_iterator_lib', test_flat_tree_iterator_exe)
+
+###########
+# VALADOC #
+###########
+
 valadoc_outdir = meson.current_build_dir() + '/valadoc'
 valadoc_indir = meson.current_source_dir() + '/lib/*.vala'
 
