@@ -134,20 +134,22 @@ public void test_spans () {
     assert_true (spans[1] == 22);
 }
 
-int main () {
-    test_children ();
-    test_count ();
-    test_depth ();
-    test_full_roots ();
-    test_index ();
-    test_left_child ();
-    test_left_span ();
-    test_offset ();
-    test_parent ();
-    test_right_child ();
-    test_right_span ();
-    test_sibling ();
-    test_spans ();
+public static int main (string[] args) {
+    Test.init (ref args);
 
-    return 0;
+    Test.add_func ("/libflat-tree/children", test_children);
+    Test.add_func ("/libflat-tree/count", test_count);
+    Test.add_func ("/libflat-tree/depth", test_depth);
+    Test.add_func ("/libflat-tree/full_roots", test_full_roots);
+    Test.add_func ("/libflat-tree/index", test_index);
+    Test.add_func ("/libflat-tree/left_child", test_left_child);
+    Test.add_func ("/libflat-tree/left_span", test_left_span);
+    Test.add_func ("/libflat-tree/offset", test_offset);
+    Test.add_func ("/libflat-tree/parent", test_parent);
+    Test.add_func ("/libflat-tree/right_child", test_right_child);
+    Test.add_func ("/libflat-tree/right_span", test_right_span);
+    Test.add_func ("/libflat-tree/sibling", test_sibling);
+    Test.add_func ("/libflat-tree/spans", test_spans);
+
+    return Test.run ();
 }
