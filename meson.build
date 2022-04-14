@@ -1,5 +1,5 @@
 project(
-    'flat_tree',
+    'flat-tree',
     'vala', 'c',
     version: '0.1.0'
 )
@@ -7,38 +7,8 @@ project(
 glib    = dependency('glib-2.0')
 gobject = dependency('gobject-2.0')
 
-lib_source = files([
-    'lib/FlatTree.vala',
-    'lib/FlatTreeIterator.vala'
-])
-
-flat_tree_lib = library(
-    'flat_tree_lib',
-    lib_source,
-    dependencies: [glib, gobject]
-)
-
-#########
-# TESTS #
-#########
-
-test_flat_tree_exe = executable(
-    'test_flat_tree_lib',
-    files('test/FlatTreeTest.vala'),
-    dependencies: [glib, gobject],
-    link_with: flat_tree_lib
-)
-
-
-test_flat_tree_iterator_exe = executable(
-    'test_flat_tree_iterator_lib',
-    files('test/FlatTreeIteratorTest.vala'),
-    dependencies: [glib, gobject],
-    link_with: flat_tree_lib
-)
-
-test('test_flat_tree_lib', test_flat_tree_exe)
-test('test_flat_tree_iterator_lib', test_flat_tree_iterator_exe)
+subdir('lib')
+subdir('test')
 
 ###########
 # VALADOC #
