@@ -1,7 +1,7 @@
 project(
     'flat-tree',
     'vala', 'c',
-    version: '0.1.0'
+    version: '0.2.0'
 )
 
 glib    = dependency('glib-2.0')
