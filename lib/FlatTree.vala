@@ -66,7 +66,23 @@ namespace FlatTree {
      * @return an array or the full roots of the tree
      */
     public static uint[] full_roots (uint index) {
-        return new uint[0];
+        uint[] result = {};
+
+        uint offset = 0;
+        uint factor = 1;
+
+        index /= 2;
+
+        while (true) {
+            if (index == 0) return result;
+            while (factor * 2 <= index) {
+                factor *= 2;
+            }
+            result += (offset + factor - 1);
+            offset = offset + 2 * factor;
+            index -= factor;
+            factor = 1;
+        }
     }
 
     /**

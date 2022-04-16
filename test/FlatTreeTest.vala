@@ -38,14 +38,32 @@ public void test_depth () {
 }
 
 public void test_full_roots () {
-    /* uint[] roots; */
-    /*  */
-    /* roots = FlatTree.full_roots (0); */
-    /* assert (roots.length == 0); */
-    /*  */
-    /* roots = FlatTree.full_roots (2); */
-    /* assert (roots.length == 1); */
-    /* assert (roots[0] == 2); */
+    uint[] roots;
+
+    roots = FlatTree.full_roots (0);
+    assert_true (roots.length == 0);
+
+    roots = FlatTree.full_roots (2);
+    assert_true (roots.length == 1);
+    assert_true (roots[0] == 0);
+
+    roots = FlatTree.full_roots (8);
+    assert_true (roots.length == 1);
+    assert_true (roots[0] == 3);
+
+    roots = FlatTree.full_roots (20);
+    assert_true (roots.length == 2);
+    assert_true (roots[0] == 7);
+    assert_true (roots[1] == 17);
+
+    roots = FlatTree.full_roots (18);
+    assert_true (roots.length == 2);
+    assert_true (roots[0] == 7);
+    assert_true (roots[1] == 16);
+
+    roots = FlatTree.full_roots (16);
+    assert_true (roots.length == 1);
+    assert_true (roots[0] == 7);
 }
 
 public void test_index () {
